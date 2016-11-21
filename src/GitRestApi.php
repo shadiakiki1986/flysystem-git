@@ -12,7 +12,7 @@ class GitRestApi extends \League\Flysystem\Adapter\NullAdapter
 
   private $repo;
 
-  public function __construct(\GitRestApi\Repository $repo, bool $pushPull = false) {
+  public function __construct(\GitRestApi\Repository $repo, bool $pushPull = true) {
     $this->repo = $repo;
     $this->pushPull = $pushPull;
   }
