@@ -11,7 +11,7 @@
     "require": {
         "php" : ">=5.5",
         "league/flysystem": "^1.0",
-        "shadiakiki1986/git-rest-api-client": "^0.0.3"
+        "shadiakiki1986/git-rest-api-client": "^0.0"
     },
     "autoload": {
         "psr-4": {
@@ -24,7 +24,7 @@
         }
     },
     "scripts": {
-        "test" : "phpunit"
+        "test" : "phpunit tests"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.6"

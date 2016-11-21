@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "65e5426ae8f2bed8a0d11a13a8b32ae1",
-    "content-hash": "b2d7adb1ed003144c6da67ba6205f3d0",
+    "hash": "a25c3bd3470afc8f6bcf2fcf69ade340",
+    "content-hash": "ba986be275fe75c3978fa8c5fa6b2478",
     "packages": [
         {
             "name": "league/flysystem",
@@ -142,16 +142,16 @@
         },
         {
             "name": "shadiakiki1986/git-rest-api-client",
-            "version": "0.0.3",
+            "version": "0.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shadiakiki1986/git-rest-api-client-php.git",
-                "reference": "c54a5dbde66b4ee8b72ce4954d626c8bb7e3062b"
+                "reference": "fb17bb01669c329f9a7dd64e26f8dbd01195a76c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shadiakiki1986/git-rest-api-client-php/zipball/c54a5dbde66b4ee8b72ce4954d626c8bb7e3062b",
-                "reference": "c54a5dbde66b4ee8b72ce4954d626c8bb7e3062b",
+                "url": "https://api.github.com/repos/shadiakiki1986/git-rest-api-client-php/zipball/fb17bb01669c329f9a7dd64e26f8dbd01195a76c",
+                "reference": "fb17bb01669c329f9a7dd64e26f8dbd01195a76c",
                 "shasum": ""
             },
             "require": {
@@ -186,7 +186,7 @@
                 "git",
                 "rest"
             ],
-            "time": "2016-11-21 09:52:40"
+            "time": "2016-11-21 12:41:08"
         }
     ],
     "packages-dev": [
