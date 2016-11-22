@@ -1,6 +1,6 @@
 {
-    "name": "shadiakiki1986/flysystem-gitrestapi",
-    "description": "Flysystem adapter for git-rest-ap",
+    "name": "shadiakiki1986/flysystem-git",
+    "description": "Flysystem adapter for git repositories",
     "type": "library",
     "authors": [
         {
