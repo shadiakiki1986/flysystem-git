@@ -1,4 +1,6 @@
 # flysystem-git
+[![Build Status](https://travis-ci.org/shadiakiki1986/flysystem-git.svg?branch=master)](https://travis-ci.org/shadiakiki1986/flysystem-git)
+
 Adapter for [flysystem](https://github.com/thephpleague/flysystem/) that interfaces to any git repository served with a [node-git-rest-api](https://github.com/korya/node-git-rest-api) server via [git-rest-api-client-php](https://github.com/shadiakiki1986/git-rest-api-client-php)
 
 ## Usage
