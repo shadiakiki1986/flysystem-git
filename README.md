@@ -29,7 +29,7 @@ $git = new \GitRestApi\Client('http://localhost:8081');
 
 // for read-write, include the correct username/password below
 $remote = 'https://someone:somepass@github.com/shadiakiki1986/git-data-repo-testDataRepo';
-$repo = $git->cloneRemote($remote);
+$repo = $git->cloneRemote($remote,1); // passing 1 for clone --depth to save some time for repositories with a long history
 
 // for writing to the remote repo, i.e. if "push" variable below is true, need to set username and email
 // not needed if read-only usage
