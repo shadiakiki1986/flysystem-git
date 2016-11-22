@@ -29,7 +29,7 @@ $git = new \GitRestApi\Client('http://localhost:8081');
 $remote = 'https://someone:somepass@github.com/shadiakiki1986/git-data-repo-testDataRepo';
 $repo = $git->cloneRemote($remote);
 
-// for writing to the repo, need to set username and email
+// for writing to the remote repo, i.e. if "push" variable below is true, need to set username and email
 // not needed if read-only usage
 $repo->putConfig('user.name','phpunit test flysystem-git');
 $repo->putConfig('user.email','shadiakiki1986@gmail.com');
