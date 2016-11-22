@@ -7,7 +7,7 @@ use League\Flysystem\Config;
 
 // Adapter for flysystem using git-rest-api-client
 // copying from league/flysystem/Adapter/Ftp and Local
-class GitRestApi extends \League\Flysystem\Adapter\NullAdapter
+class Git extends \League\Flysystem\Adapter\NullAdapter
 {
 
   private $repo;

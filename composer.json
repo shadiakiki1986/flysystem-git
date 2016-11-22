@@ -15,12 +15,12 @@
     },
     "autoload": {
         "psr-4": {
-            "shadiakiki1986\\Flysystem\\": "src"
+            "shadiakiki1986\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "shadiakiki1986\\Flysystem\\": "tests"
+            "shadiakiki1986\\": "tests"
         }
     },
     "scripts": {

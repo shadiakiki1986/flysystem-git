@@ -5,15 +5,15 @@ namespace shadiakiki1986\Flysystem;
 use League\Flysystem\Filesystem;
 
 // copied from flysystem-github/tests/integration/compareToLocal.php
-class GitRestApiTest extends \GitRestApi\TestCase {
+class GitTest extends \GitRestApi\TestCase {
 
     private static $filesystem;
 
     final public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        self::$filesystem = new Filesystem(new GitRestApi(self::$repo,false));
-        self::$repo->putConfig('user.name','phpunit test flysystem-gitrestapi');
+        self::$filesystem = new Filesystem(new Git(self::$repo,false));
+        self::$repo->putConfig('user.name','phpunit test flysystem-git');
         self::$repo->putConfig('user.email','shadiakiki1986@gmail.com');
     }
 
