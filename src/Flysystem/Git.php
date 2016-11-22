@@ -12,13 +12,16 @@ class Git extends \League\Flysystem\Adapter\NullAdapter
 
   private $repo;
 
-  public function __construct(\GitRestApi\Repository $repo, bool $pushPull = true) {
+  public function __construct(\GitRestApi\Repository $repo, bool $push = true, bool $pull = true) {
     $this->repo = $repo;
-    $this->pushPull = $pushPull;
+    $this->push = $push;
+    $this->pull = $pull;
   }
 
   public function has($path) {
-    if($this->pushPull) $this->repo->pull();
+    $this->preprocessPath($path);
+
+    if($this->pull) $this->repo->pull();
 //    return $this->repo->lsTree($path);
 
     try {
@@ -29,11 +32,17 @@ class Git extends \League\Flysystem\Adapter\NullAdapter
     }
   }
 
+  private function preprocessPath(&$path) {
+    $path = urlencode($path);
+  }
+
   public function write($path, $contents, Config $config) {
-    if($this->pushPull) $this->repo->pull();
+    $this->preprocessPath($path);
+
+    if($this->pull) $this->repo->pull();
     $this->repo->putTree($path,$contents);
     $this->repo->postCommit('set '.$path);
-    if($this->pushPull) $this->repo->push();
+    if($this->push) $this->repo->push();
 
     return [
       'contents'=>$contents,
@@ -41,12 +50,13 @@ class Git extends \League\Flysystem\Adapter\NullAdapter
     ];
   }
 
-  public function update ($path,$contents,Config $config) {
+  public function update($path,$contents,Config $config) {
     return $this->write($path,$contents,$config);
   }
 
   public function read($path) {
-    if($this->pushPull) $this->repo->pull();
+    $this->preprocessPath($path);
+    if($this->pull) $this->repo->pull();
 
     // get raw data from repo
     try {

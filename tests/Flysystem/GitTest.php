@@ -12,7 +12,7 @@ class GitTest extends \GitRestApi\TestCase {
     final public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        self::$filesystem = new Filesystem(new Git(self::$repo,false));
+        self::$filesystem = new Filesystem(new Git(self::$repo,false,false));
         self::$repo->putConfig('user.name','phpunit test flysystem-git');
         self::$repo->putConfig('user.email','shadiakiki1986@gmail.com');
     }
@@ -42,10 +42,19 @@ class GitTest extends \GitRestApi\TestCase {
         $this->assertEquals($result,self::$random);
     }
 
-    final public function testWriteOk()
+    final public function testWriteFileNew()
     {
-        self::$filesystem->update('bla',self::$random);
-        $result = self::$filesystem->read('bla');
+        $fn = 'random files/'.self::$random;
+        self::$filesystem->write($fn,self::$random);
+        $result = self::$filesystem->read($fn);
+        $this->assertEquals($result,self::$random);
+    }
+
+    final public function testUpdate()
+    {
+        $fn='bla';
+        self::$filesystem->update($fn,self::$random);
+        $result = self::$filesystem->read($fn);
         $this->assertEquals($result,self::$random);
     }
 

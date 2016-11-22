@@ -35,7 +35,9 @@ $repo->putConfig('user.name','phpunit test flysystem-git');
 $repo->putConfig('user.email','shadiakiki1986@gmail.com');
 
 // initialize filesystem for further usage
-$adapter = new \shadiakiki1986\Flysystem\Git($repo,true);
+$push = false; // set to false to make read/write possible without pushing to remote. Set to true to push to remote
+$pull = true; // set to true to skip pulling from the remote repository at each transaction in order to save on time
+$adapter = new \shadiakiki1986\Flysystem\Git($repo,$push,$pull);
 $filesystem = new Filesystem($adapter);
 
 // read a file
