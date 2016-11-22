@@ -16,6 +16,9 @@ docker run -p 8081:8081 -it shadiakiki1986/docker-node-git-rest-api
 
 Example
 ```php
+<?php
+require_once 'vendor/autoload.php';
+
 use League\Flysystem\Filesystem;
 
 // prepare adapter
