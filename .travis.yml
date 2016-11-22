@@ -1,0 +1,23 @@
+sudo: required
+
+services:
+- docker
+
+language: php
+
+php:
+- 7
+
+before_install:
+- composer install
+- docker run -d -p 8081:8081 shadiakiki1986/docker-node-git-rest-api
+
+script:
+- composer test
+
+after_success:
+- docker ps|grep shadiakiki1986|awk '{print "docker stop " $1}'|bash
+
+branches:
+  only:
+  - master

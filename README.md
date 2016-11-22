@@ -47,6 +47,6 @@ $contents = $filesystem->read('bla');
 $filesystem->update('bla','some new content');
 
 // write to a new file
-$filesystem->write('new folder/new file');
+$filesystem->write('new folder/new file','content of file');
 ```
 
