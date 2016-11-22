@@ -14,14 +14,15 @@ Launch a [node-git-rest-api](https://github.com/korya/node-git-rest-api) server
 docker run -p 8081:8081 -it shadiakiki1986/docker-node-git-rest-api
 ```
 
-Example code
-
+Example
 ```php
 use League\Flysystem\Filesystem;
 
 // prepare adapter
 // http://github.com/shadiakiki1986/git-rest-api-client-php
 $git = new \GitRestApi\Client('http://localhost:8081');
+
+// for read-write, include the correct username/password below
 $remote = 'https://someone:somepass@github.com/shadiakiki1986/git-data-repo-testDataRepo';
 $repo = $git->cloneRemote(self::$remote);
 
@@ -33,5 +34,14 @@ $repo->putConfig('user.email','shadiakiki1986@gmail.com');
 // initialize filesystem for further usage
 $adapter = new \shadiakiki1986\Flysystem\Git($repo,true);
 $filesystem = new Filesystem($adapter);
+
+// read a file
+$contents = $filesystem->read('bla');
+
+// if username/password above are correct, can also update the file
+$filesystem->update('bla','some new content');
+
+// write to a new file
+$filesystem->write('new folder/new file');
 ```
 
