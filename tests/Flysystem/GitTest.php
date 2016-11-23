@@ -15,6 +15,10 @@ class GitTest extends \GitRestApi\TestCase {
         self::$filesystem = new Filesystem(new Git(self::$repo,false,false));
         self::$repo->putConfig('user.name','phpunit test flysystem-git');
         self::$repo->putConfig('user.email','shadiakiki1986@gmail.com');
+
+        if(!self::$filesystem->has($fn)) {
+          self::$filesystem->write('bla',self::$random);
+        }
     }
 
   /**
@@ -29,7 +33,15 @@ class GitTest extends \GitRestApi\TestCase {
     {
         $result =self::$filesystem->read('bla');
         $this->assertNotNull($result);
-        $this->assertNotEquals($result,self::$random);
+    }
+
+    final public function testMetadata()
+    {
+        $fn='bla';
+        $log = self::$filesystem->getMetadata($fn);
+        $this->assertNotNull($log);
+        $this->assertNotNull($log->sha1);
+        $this->assertNotNull($log->commitDate);
     }
 
   /**

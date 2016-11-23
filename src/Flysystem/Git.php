@@ -95,4 +95,16 @@ class Git extends \League\Flysystem\Adapter\NullAdapter
     }
   }
 
+  public function getMetadata($path) {
+    // just getting repo hash and commit date
+    if($this->pull) $this->repo->pull();
+
+    $log = $this->repo->log('-1');
+    if(count($log)==0) {
+      return false;
+    }
+
+    return array_values($log)[0];
+  }
+
 }
