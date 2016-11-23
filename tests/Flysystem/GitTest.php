@@ -16,7 +16,7 @@ class GitTest extends \GitRestApi\TestCase {
         self::$repo->putConfig('user.name','phpunit test flysystem-git');
         self::$repo->putConfig('user.email','shadiakiki1986@gmail.com');
 
-        if(!self::$filesystem->has($fn)) {
+        if(!self::$filesystem->has('bla')) {
           self::$filesystem->write('bla',self::$random);
         }
     }

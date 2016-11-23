@@ -19,17 +19,13 @@ class Git extends \League\Flysystem\Adapter\NullAdapter
   }
 
   public function has($path) {
+    $bn=basename($path);
     $this->preprocessPath($path);
 
     if($this->pull) $this->repo->pull();
-//    return $this->repo->lsTree($path);
-
-    try {
-      $this->repo->getTree($path);
-      return true;
-    } catch(\Exception $e) {
-      return false;
-    }
+    $result = $this->repo->lsTree($path);
+    $result = array_column($result, 'name');
+    return in_array($bn,$result);
   }
 
   private function preprocessPath(&$path) {
