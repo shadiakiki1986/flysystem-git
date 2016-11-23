@@ -72,13 +72,19 @@ class GitTest extends \GitRestApi\TestCase {
 
     /**
      * @depends testUpdateOk
+     * @dataProvider testUpdateSameContentSoDoNothingProvider
      */
-    final public function testUpdateSameContentSoDoNothing()
+    final public function testUpdateSameContentSoDoNothing($fn)
     {
-        $fn='bla';
-        self::$filesystem->update($fn,self::$random);
         $result = self::$filesystem->read($fn);
-        $this->assertEquals($result,self::$random);
+        self::$filesystem->update($fn,$result);
+    }
+
+    public function testUpdateSameContentSoDoNothingProvider() {
+      return [
+        ['bla'],
+        ['bla foo']
+      ];
     }
 
     /**

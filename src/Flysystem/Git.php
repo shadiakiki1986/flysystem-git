@@ -33,15 +33,17 @@ class Git extends \League\Flysystem\Adapter\NullAdapter
   }
 
   public function write($path, $contents, Config $config) {
+    $pathDecoded = $path;
     $this->preprocessPath($path);
 
     if($this->pull) $this->repo->pull();
 
     $result = [
       'contents'=>$contents,
-      'mimetype'=>Util::guessMimeType($path, $contents)
+      'mimetype'=>Util::guessMimeType($pathDecoded, $contents)
     ];
-    if($this->has($path)) {
+
+    if($this->has($pathDecoded)) {
       $current = $this->repo->getTree($path);
       if($current == $contents) {
         // will not do anything since same data
