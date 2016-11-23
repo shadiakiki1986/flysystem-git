@@ -40,14 +40,23 @@ class Git extends \League\Flysystem\Adapter\NullAdapter
     $this->preprocessPath($path);
 
     if($this->pull) $this->repo->pull();
+
+    $result = [
+      'contents'=>$contents,
+      'mimetype'=>Util::guessMimeType($path, $contents)
+    ];
+    if($this->has($path)) {
+      $current = $this->repo->getTree($path);
+      if($current == $contents) {
+        // will not do anything since same data
+        return $result;
+      }
+    }
     $this->repo->putTree($path,$contents);
     $this->repo->postCommit('set '.$path);
     if($this->push) $this->repo->push();
 
-    return [
-      'contents'=>$contents,
-      'mimetype'=>Util::guessMimeType($path, $contents)
-    ];
+    return $result;
   }
 
   public function update($path,$contents,Config $config) {
@@ -69,6 +78,21 @@ class Git extends \League\Flysystem\Adapter\NullAdapter
       'contents'=>$raw,
       'path'=>$path
     ];
+  }
+
+  public function delete($path) {
+    $this->preprocessPath($path);
+    if($this->pull) $this->repo->pull();
+
+    try {
+      $this->repo->deleteTree($path);
+      $this->repo->postCommit('del '.$path);
+      if($this->push) $this->repo->push();
+
+      return true;
+    } catch(\Exception $e) {
+      return false;
+    }
   }
 
 }
