@@ -50,8 +50,6 @@ class GitTest extends \GitRestApi\TestCase {
     final public function testWriteFileAlreadyExists()
     {
         self::$filesystem->write('bla',self::$random);
-        $result = self::$filesystem->read('bla');
-        $this->assertEquals($result,self::$random);
     }
 
     final public function testWriteFileNew()
@@ -68,6 +66,14 @@ class GitTest extends \GitRestApi\TestCase {
         self::$filesystem->update($fn,self::$random);
         $result = self::$filesystem->read($fn);
         $this->assertEquals($result,self::$random);
+    }
+
+    final public function testPut()
+    {
+        $fn = 'random files/'.self::$random.'-new';
+        self::$filesystem->put($fn,self::$random);
+        self::$filesystem->put($fn,self::$random);
+        $this->assertTrue(true); // will reach here without failing
     }
 
     /**

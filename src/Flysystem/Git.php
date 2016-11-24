@@ -61,6 +61,10 @@ class Git extends \League\Flysystem\Adapter\NullAdapter
     return $this->write($path,$contents,$config);
   }
 
+  public function put($path,$contents,Config $config) {
+    return $this->write($path,$contents,$config);
+  }
+
   public function read($path) {
     $this->preprocessPath($path);
     if($this->pull) $this->repo->pull();
